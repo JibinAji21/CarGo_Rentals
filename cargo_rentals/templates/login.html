@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <style>
+        /* .reg{
+            color: white;
+            text-decoration: none;
+        } */
+         /* Additional padding for the login form */
+.login_div {
+    min-height: 100vh; /* Ensure full height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    padding: 30px; /* Padding for the form container */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #ffffff;
+}
+
+/* Input fields */
+.login-form .form-control {
+    padding: 15px; /* Extra padding inside input fields */
+    font-size: 1rem; /* Font size for inputs */
+}
+
+/* Login button */
+.login-form .btn {
+    padding: 12px; /* Button padding */
+    font-size: 1.1rem; /* Slightly larger font size for the button */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 576px) {
+    .login-form {
+        padding: 20px; /* Less padding for small screens */
+    }
+
+    .login-form h2 {
+        font-size: 1.5rem; /* Smaller heading font size for mobile */
+    }
+}
+
+
+   
+
+    </style>
+</head>
+<body>
+    <!-- <div class="login_div">
+        <h2 style="text-align: center;">LOGIN</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p><b>USERNAME: </b><input type="text" name="uname" placeholder="username"></p>
+            <p><b>PASSWORD: </b><input type="password" name="password" placeholder="password" class="pswd"></p>
+            <input type="submit" value="login">
+        </form>
+        <p>New customer ? <a href="register" class="reg text-dark">Register</a> </p>
+        
+    </div> -->
+    
+    <!-- <div class="login_div container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-form p-4 rounded shadow-lg bg-white">
+                    <h2 class="text-center mb-4">LOGIN</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="uname" class="form-label"><b>USERNAME</b></label>
+                            <input type="text" class="form-control" id="uname" name="uname" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><b>PASSWORD</b></label>
+                            <input type="password" class="form-control pswd" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <p class="mt-3 text-center">New customer? <a href="register" class="reg text-dark">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+
+
+    <div class="login_div container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-form p-4 rounded shadow-lg bg-white">
+                    <h2 class="text-center mb-4">LOGIN</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="uname" class="form-label"><b>USERNAME</b></label>
+                            <input type="text" class="form-control" id="uname" name="uname" placeholder="Username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><b>PASSWORD</b></label>
+                            <input type="password" class="form-control pswd" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" style="align-items: center;">Login</button>
+                    </form>
+                    <p class="mt-3 text-center">New customer? <a href="register" class="reg text-dark">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

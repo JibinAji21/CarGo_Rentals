@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"> -->
+    <!-- <style>
+        .addp_body{
+            background-color:black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 96vh;
+        }
+        .main_div{
+            max-width: 400px;
+            width: 100%;
+            padding: 50px;
+            background-color: goldenrod;
+            border-radius: 8px;
+
+        }
+        .add_pro{
+            text-align: center;
+            
+        }
+        input[type=text],select{
+            width: 90%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+        input[type=number],select{
+            width: 90%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+        input[type=submit],select{
+            width: 19%;
+            padding: 12px 20px;
+            margin-left: 40%;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+
+        }
+    </style> -->
+    
+</head>
+<body class="addp_body">
+
+
+    <div class="main_div">
+        <h2 class="add_pro fw-light">Add Cars</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p><b>Car id : </b><input type="text" name="car_id" id="" placeholder="car id" class="car_id"></p>
+            <p><b>Car name : </b><input type="text" name="car_name" id="" placeholder="car name"></p>
+            <p><b>Car year : </b><input type="number" name="car_year" id="" placeholder="car year"></p>
+            <p><b>Car place : </b><input type="text" name="car_place" id="" placeholder="car place"></p>
+            <p><b>Car rent : </b><input type="number" name="car_rent" id="" placeholder="car rent"></p>
+            <p><b>Car fuel : </b><input type="text" name="car_fuel" id="" placeholder="car fuel"></p>
+            <p><b>Car Image : </b><input type="file" name="car_img" id=""></p>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+</body>
+</html>

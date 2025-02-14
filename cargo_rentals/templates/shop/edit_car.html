@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .edit_body{
+            background-color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .edit_div{
+            
+            text-align: center;
+        }
+        
+        .edit_pro{
+            font-size: 30px;
+            color:black;
+            font-weight: 750;
+            margin-bottom:35px ;
+        }
+        
+       
+        .input-tag{
+            margin-bottom: 25px;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;    
+            padding:15px;
+            border-radius:9px;
+            border: 2px solid white;
+        } 
+
+        input[type="submit"] {
+            background-color: black;
+            color: goldenrod;
+            padding: 18px;
+            border:none;
+            border-radius: 9px;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(92, 92, 92) ;
+        }
+    </style>
+</head>
+<body class="edit_body">
+    <form action="" method="post">
+        <div class="edit_div">
+            <h2 class="edit_pro">Edit Cars</h2>
+            {% csrf_token %}
+            <div class="input-tag">
+                <b>Car Id : </b><input type="text" name="car_id" id="" placeholder="car id" class="p_id" value="{{data.car_id}}">
+            </div>
+            <div class="input-tag">
+                <b>Car Name : </b><input type="text" name="car_name" id="" placeholder="car name" value="{{data.car_name}}">
+            </div>
+            <div class="input-tag">
+                <b>Car Year : </b><input type="text" name="car_year" id="" placeholder="car year" value="{{data.car_year}}">
+            </div>
+            <div class="input-tag">
+                <b>Car Place: </b><input type="text" name="car_place" id="" placeholder="car place" value="{{data.car_place}}">
+            </div>
+            <div class="input-tag">
+                <b>Car Rent : </b><input type="number" name="car_rent" id="" placeholder="car rent" value="{{data.car_rent}}">
+            </div>
+            <div class="input-tag">
+                <b>Car Fuel : </b><input type="text" name="car_fuel" id="" placeholder="car fuel" value="{{data.car_fuel}}">
+            </div>
+            
+            <div class="input-tag">
+                <img src="{{data.car_img.url}}" alt="" style="width: 90px;">
+            </div>
+            <div class="input-tag">
+                <b>Product Image : </b><input type="file" name="car_img" id="" value="{{data.car_img}}">
+            </div>
+        
+            <div class="input-tag">
+                <input type="submit" value="Add">
+            </div>
+        </div>
+    </form> 
+</body>
+</html>
