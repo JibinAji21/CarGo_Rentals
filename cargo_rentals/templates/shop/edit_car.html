@@ -1,100 +1,81 @@
+<!-- edit_car.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Car - {{ car.car_name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
     <style>
-         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .form-container {
+            margin-top: 20px;
         }
-    
-        .edit_body{
-            background-color: goldenrod;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        .form-group {
+            margin-bottom: 15px;
         }
-
-        .edit_div{
-            
-            text-align: center;
-        }
-        
-        .edit_pro{
-            font-size: 30px;
-            color:black;
-            font-weight: 750;
-            margin-bottom:35px ;
-        }
-        
-       
-        .input-tag{
-            margin-bottom: 25px;
-        }
-        
-        input[type="text"],
-        input[type="number"],
-        input[type="submit"] {
-            width: 100%;    
-            padding:15px;
-            border-radius:9px;
-            border: 2px solid white;
-        } 
-
-        input[type="submit"] {
-            background-color: black;
-            color: goldenrod;
-            padding: 18px;
-            border:none;
-            border-radius: 9px;
-            font-weight: bold;
-            font-size: 22px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: rgb(92, 92, 92) ;
+        .img-preview {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
         }
     </style>
 </head>
-<body class="edit_body">
-    <form action="" method="post">
-        <div class="edit_div">
-            <h2 class="edit_pro">Edit Cars</h2>
+<body>
+    <div class="container form-container">
+        <h1>Edit Car - {{ car.car_name }}</h1>
+        <form action="{% url 'edit_car' car.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="input-tag">
-                <b>Car Id : </b><input type="text" name="car_id" id="" placeholder="car id" class="p_id" value="{{data.car_id}}">
+
+            <!-- Car ID -->
+            <div class="form-group">
+                <label for="car_id" class="form-label">Car ID</label>
+                <input type="text" class="form-control" id="car_id" name="car_id" value="{{ car.car_id }}" required>
             </div>
-            <div class="input-tag">
-                <b>Car Name : </b><input type="text" name="car_name" id="" placeholder="car name" value="{{data.car_name}}">
+
+            <!-- Car Name -->
+            <div class="form-group">
+                <label for="car_name" class="form-label">Car Name</label>
+                <input type="text" class="form-control" id="car_name" name="car_name" value="{{ car.car_name }}" required>
             </div>
-            <div class="input-tag">
-                <b>Car Year : </b><input type="text" name="car_year" id="" placeholder="car year" value="{{data.car_year}}">
+
+            <!-- Car Year -->
+            <div class="form-group">
+                <label for="car_year" class="form-label">Car Year</label>
+                <input type="number" class="form-control" id="car_year" name="car_year" value="{{ car.car_year }}" required>
             </div>
-            <div class="input-tag">
-                <b>Car Place: </b><input type="text" name="car_place" id="" placeholder="car place" value="{{data.car_place}}">
+
+            <!-- Car Place -->
+            <div class="form-group">
+                <label for="car_place" class="form-label">Car Place</label>
+                <input type="text" class="form-control" id="car_place" name="car_place" value="{{ car.car_place }}" required>
             </div>
-            <div class="input-tag">
-                <b>Car Rent : </b><input type="number" name="car_rent" id="" placeholder="car rent" value="{{data.car_rent}}">
+
+            <!-- Car Rent -->
+            <div class="form-group">
+                <label for="car_rent" class="form-label">Car Rent</label>
+                <input type="number" class="form-control" id="car_rent" name="car_rent" value="{{ car.car_rent }}" required>
             </div>
-            <div class="input-tag">
-                <b>Car Fuel : </b><input type="text" name="car_fuel" id="" placeholder="car fuel" value="{{data.car_fuel}}">
+
+            <!-- Car Fuel -->
+            <div class="form-group">
+                <label for="car_fuel" class="form-label">Car Fuel</label>
+                <input type="text" class="form-control" id="car_fuel" name="car_fuel" value="{{ car.car_fuel }}" required>
             </div>
-            
-            <div class="input-tag">
-                <img src="{{data.car_img.url}}" alt="" style="width: 90px;">
+
+            <!-- Car Image -->
+            <div class="form-group">
+                <label for="car_img" class="form-label">Car Image</label>
+                <input type="file" class="form-control" id="car_img" name="car_img">
+                {% if car.car_img %}
+                    <img src="{{ car.car_img.url }}" alt="Car Image" class="img-preview">
+                {% endif %}
             </div>
-            <div class="input-tag">
-                <b>Product Image : </b><input type="file" name="car_img" id="" value="{{data.car_img}}">
-            </div>
-        
-            <div class="input-tag">
-                <input type="submit" value="Add">
-            </div>
-        </div>
-    </form> 
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

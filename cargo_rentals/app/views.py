@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 import os
@@ -40,8 +40,6 @@ def shop_logout(req):
     req.session.flush()
     return redirect(shop_login)
     
-    
-
 def shop_home(req):
     if 'shop' in req.session:
         car=Car_category.objects.all()
@@ -49,22 +47,59 @@ def shop_home(req):
     else:
         return redirect(shop_login)
     
+def add_car(request):
+    if request.method == 'POST':
+        car_id = request.POST['car_id']
+        car_name = request.POST['car_name']
+        car_year = request.POST['car_year']
+        car_place = request.POST['car_place']
+        car_rent = request.POST['car_rent']
+        car_fuel = request.POST['car_fuel']
+        car_img = request.FILES['car_img']
+        car_category = request.POST['category'] 
+        try:
+            category_instance = Car_category.objects.get(id=car_category)
+            new_car = Cars.objects.create(
+                car_id=car_id,
+                car_name=car_name,
+                car_year=car_year,
+                car_place=car_place,
+                car_rent=car_rent,
+                car_fuel=car_fuel,
+                car_img=car_img,
+                category=category_instance
+            )
+            new_car.save()
+            return redirect(shop_home)
+        except Car_category.DoesNotExist:
+            return HttpResponse('Category not found.', status=400)
+    else:
+        categories = Car_category.objects.all()  
+        return render(request, 'shop/addcar.html', {'categories': categories})
 
-def add_car(req):
-    if req.method=='POST':
-        id=req.POST['car_id']
-        name=req.POST['car_name']
-        year=req.POST['car_year']
-        place=req.POST['car_place']
-        rent=req.POST['car_rent']
-        fuel=req.POST['car_fuel']
-        file=req.FILES['car_img']
-        car_category=req.POST['car_category']
-        data=Cars.objects.create(car_id=id,car_name=name,car_year=year,car_place=place,car_rent=rent,car_fuel=fuel,car_img=file,category=car_category)
-        data.save()
-        return redirect(shop_home)
-    return render(req,'shop/addcar.html')
 
+def edit_car(request, car_id):
+    car = get_object_or_404(Cars, id=car_id)
+    if request.method == 'POST':
+        car.car_id = request.POST.get('car_id')
+        car.car_name = request.POST.get('car_name')
+        car.car_year = request.POST.get('car_year')
+        car.car_place = request.POST.get('car_place')
+        car.car_rent = request.POST.get('car_rent')
+        car.car_fuel = request.POST.get('car_fuel')
+        if 'car_img' in request.FILES:
+            car.car_img = request.FILES['car_img']
+        car.save()
+        return redirect(shop_home)  
+    return render(request, 'shop/edit_car.html', {'car': car})
+
+def delete_car(request, id):
+    car = get_object_or_404(Cars, pk=id)
+    image_path = car.car_img.path 
+    if os.path.exists(image_path):
+        os.remove(image_path) 
+    car.delete()
+    return redirect(shop_home)
 
 def budget_cars(req,id):
     category = Car_category.objects.get(id=id)
