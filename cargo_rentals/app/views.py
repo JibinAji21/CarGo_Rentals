@@ -110,3 +110,36 @@ def medium_cars(req,id):
     category = Car_category.objects.get(id=id)
     car_details = Cars.objects.filter(category=category)
     return render(req, 'shop/car_list.html', {'category': category,'car_details':car_details})
+
+
+
+
+# ------------------user-------------------------
+
+
+
+def register(req):
+    if req.method=='POST':
+        name=req.POST['name']
+        email=req.POST['email']
+        password=req.POST['password']
+        try:
+            data=User.objects.create_user(first_name=name,email=email,password=password,username=email)
+            data.save()
+            return redirect(shop_login)
+        except:
+            messages.warning(req,"Email Exists")
+            return redirect(register)
+    else:
+        return render(req,'user/register.html')
+    
+
+def user_home(req):
+    car=Car_category.objects.all()
+    return render(req,'user/customer_home.html',{'cars':car})
+
+
+def cars_list(req,id):
+    category = Car_category.objects.get(id=id)
+    car_details = Cars.objects.filter(category=category)
+    return render(req, 'user/cars_list.html', {'category': category,'car_details':car_details})

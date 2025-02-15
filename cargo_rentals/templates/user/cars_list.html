@@ -53,13 +53,8 @@
                             <strong>Rent:</strong> {{ car.car_rent }} per day <br>
                             <strong>Place:</strong> {{ car.car_place }} 
                         </p>
-                        <a href="{% url 'edit_car' car.id %}" class="btn btn-warning">Edit</a>
-
-                        <!-- Delete Button inside a form -->
-                        <form action="{% url 'delete_car' car.id %}" method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this car?')">Delete</button>
-                        </form>
+                        <a href="" class="btn btn-danger">Book Now</a>
+                        
                     </div>
                 </div>
             </div>
